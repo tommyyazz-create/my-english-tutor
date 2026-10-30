@@ -1,0 +1,10 @@
+{
+  "name": "My English Tutor",
+  "short_name": "English Tutor",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#071329",
+  "theme_color": "#08152f",
+  "lang": "it",
+  "icons": []
+}

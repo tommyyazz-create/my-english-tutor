@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08152f"><meta name="description" content="Il tuo insegnante personale di inglese">
+<link rel="manifest" href="manifest.webmanifest">
+<title>My English Tutor</title>
+<style>
+:root{--bg:#071329;--panel:#122345;--panel2:#1a3158;--line:#304a78;--blue:#287cf0;--cyan:#52d5ef;--text:#f4f7ff;--muted:#b8c7e3;--gold:#ffc94a}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#0c1b38,#050d1d 72%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+.app{max-width:520px;margin:auto;min-height:100vh;padding:env(safe-area-inset-top) 16px calc(82px + env(safe-area-inset-bottom))}
+header{display:flex;align-items:center;gap:12px;padding:16px 2px 12px}.flag{font-size:32px}.brand{font-weight:800;font-size:21px}.sub{font-size:12px;color:var(--muted);letter-spacing:.5px}.gear{margin-left:auto;background:#20365d;border:1px solid var(--line);color:white;border-radius:50%;width:42px;height:42px;font-size:20px}
+.hero{position:relative;display:grid;grid-template-columns:44% 1fr;gap:12px;align-items:center;min-height:260px;background:linear-gradient(135deg,#172b4e,#0e1b34);border:1px solid var(--line);border-radius:24px;overflow:hidden;padding:12px}
+.hero img{width:100%;height:250px;object-fit:cover;object-position:center 25%;border-radius:17px}
+.bubble{background:#f4f6fb;color:#12203b;border-radius:18px;padding:14px;font-weight:650;font-size:17px;line-height:1.35}.bubble small{display:block;color:#52627d;font-size:12px;font-weight:500;margin-top:8px}
+.mic{width:100%;margin-top:14px;border:0;border-radius:18px;background:linear-gradient(135deg,#3997ff,#1454d6);color:white;padding:15px 8px;font-size:16px;font-weight:750;box-shadow:0 7px 20px #0d5bd866}.mic.listening{background:linear-gradient(135deg,#e34e69,#a51d46)}
+.hint{text-align:center;color:var(--muted);font-size:11px;margin-top:7px}
+.section{font-weight:750;margin:20px 2px 10px;font-size:17px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tile{background:linear-gradient(145deg,#1a3158,#112342);border:1px solid var(--line);border-radius:17px;padding:15px 13px;text-align:left;color:white;min-height:88px}.tile b{display:block;font-size:15px;margin-top:6px}.tile span{font-size:12px;color:var(--muted)}.ico{font-size:24px}
+.panel{background:#0d1b34;border:1px solid var(--line);border-radius:18px;padding:15px;margin-top:14px}.progressrow{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}.bar{height:8px;background:#263b5f;border-radius:8px;overflow:hidden;margin-top:10px}.bar>i{display:block;height:100%;background:linear-gradient(90deg,#28a6ff,#55d8d7);width:0%}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);display:flex;justify-content:space-around;background:#0c1b35f5;border-top:1px solid var(--line);padding:10px 4px calc(10px + env(safe-area-inset-bottom));backdrop-filter:blur(12px);z-index:4}nav button{background:none;border:0;color:var(--muted);font-size:11px}nav button strong{display:block;font-size:20px;margin-bottom:2px}nav button.active{color:#54b7ff}
+.view{display:none}.view.active{display:block}.back{border:0;background:transparent;color:#9bc8ff;font-size:14px;padding:12px 0}
+.chatbox{height:44vh;min-height:250px;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:8px 2px}.msg{max-width:88%;padding:11px 13px;border-radius:15px;line-height:1.4;font-size:14px}.bot{align-self:flex-start;background:#1a3158}.user{align-self:flex-end;background:#1765c5}.translation{display:block;color:#c2d4f3;font-size:12px;margin-top:5px}.chatcontrols{display:flex;gap:8px}.chatcontrols input{min-width:0;flex:1;border:1px solid var(--line);background:#0d1b34;color:white;border-radius:12px;padding:12px;font-size:15px}.send{border:0;background:var(--blue);color:white;border-radius:12px;padding:0 17px;font-weight:700}
+.lessoncard{background:#132747;border:1px solid var(--line);border-radius:18px;padding:16px;margin:10px 0}.word{font-size:25px;font-weight:800}.meaning{color:var(--muted)}.action{background:var(--blue);color:white;border:0;border-radius:12px;padding:12px 16px;font-weight:700;margin-top:10px}.secondary{background:#253d63}.feedback{color:#9de8d6;font-size:13px;margin-top:9px}
+.small{font-size:12px;color:var(--muted);line-height:1.5}.settingsrow{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line)}
+@media(max-width:370px){.hero{grid-template-columns:40% 1fr}.hero img{height:220px}.bubble{font-size:15px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="flag">🌐</div><div><div class="brand">My English Tutor</div><div class="sub">SPEAK · LEARN · IMPROVE</div></div><button class="gear" onclick="show('profile')">⚙</button></header>
+
+<main id="home" class="view active">
+<section class="hero"><img src="tutor.jpg" alt="La tua insegnante virtuale"><div><div class="bubble" id="greeting">Hello! I'm your English tutor. Ready to practise today?<small>Parliamo con calma, un passo alla volta.</small></div><button class="mic" id="homeMic" onclick="startListening('home')">🎙 Tocca per parlare</button><div class="hint" id="micHint">Usa il microfono e parla in inglese</div></div></section>
+<div class="section">La tua pratica</div>
+<div class="grid">
+<button class="tile" onclick="show('conversation')"><div class="ico">💬</div><b>Conversazione</b><span>Parla con me</span></button>
+<button class="tile" onclick="show('vocabulary')"><div class="ico">📚</div><b>Vocabolario</b><span>Parole di ogni giorno</span></button>
+<button class="tile" onclick="show('grammar')"><div class="ico">🧩</div><b>Grammatica</b><span>Spiegazioni semplici</span></button>
+<button class="tile" onclick="show('daily')"><div class="ico">🎯</div><b>Lezione quotidiana</b><span>5 minuti al giorno</span></button>
+</div>
+<div class="panel"><div class="progressrow"><b>Il tuo percorso</b><b id="progressLabel">0 lezioni completate</b></div><div class="bar"><i id="progressBar"></i></div><div class="small" style="margin-top:9px">Livello iniziale: principiante · Obiettivo: parlare con più sicurezza.</div></div>
+</main>
+
+<section id="conversation" class="view">
+<button class="back" onclick="show('home')">← Home</button><div class="section">Conversazione con Emma</div><div class="small">Rispondi in inglese. Se sbagli, ti mostro una versione più naturale e te la spiego in italiano.</div>
+<div class="chatbox" id="chat"><div class="msg bot">Hello! How are you today? 😊<span class="translation">Ciao! Come stai oggi?</span></div></div>
+<div class="chatcontrols"><input id="chatInput" placeholder="Scrivi una risposta in inglese…" onkeydown="if(event.key==='Enter')sendMessage()"><button class="send" onclick="sendMessage()">Invia</button></div>
+<button class="action" onclick="startListening('chat')">🎙 Parla invece di scrivere</button><div class="hint" id="chatHint">Pronuncia: inglese internazionale neutro</div>
+</section>
+
+<section id="vocabulary" class="view">
+<button class="back" onclick="show('home')">← Home</button><div class="section">Parole utili di oggi</div><div id="wordCard" class="lessoncard"></div><button class="action" onclick="nextWord()">Prossima parola →</button>
+</section>
+<section id="grammar" class="view">
+<button class="back" onclick="show('home')">← Home</button><div class="section">Grammatica facile</div>
+<div class="lessoncard"><b>Present simple: parlare delle abitudini</b><p>Si usa per routine e fatti abituali.</p><div class="word">I work every day.</div><div class="meaning">Lavoro ogni giorno.</div><p><b>Attenzione:</b> con he / she / it aggiungi -s.</p><div class="word">She works every day.</div><div class="meaning">Lei lavora ogni giorno.</div></div>
+<div class="lessoncard"><b>Prova tu</b><p>Come dici: “Io bevo tè”?</p><button class="action" onclick="grammarAnswer(1)">I drink tea</button><button class="action secondary" onclick="grammarAnswer(0)">I drinks tea</button><div id="grammarFeedback" class="feedback"></div></div>
+</section>
+<section id="daily" class="view">
+<button class="back" onclick="show('home')">← Home</button><div class="section">La lezione di oggi · 5 minuti</div>
+<div class="lessoncard"><b>Situazione: al bar ☕</b><p>Impara questa frase:</p><div class="word">I'd like a tea, please.</div><div class="meaning">Vorrei un tè, per favore.</div><button class="action secondary" onclick="speak('I would like a tea, please.')">🔊 Ascolta la pronuncia</button><p style="margin-top:18px"><b>Ora prova a dirlo tu.</b></p><button class="action" onclick="startListening('daily')">🎙 Registra la tua frase</button><div id="dailyFeedback" class="feedback"></div></div>
+</section>
+<section id="profile" class="view">
+<button class="back" onclick="show('home')">← Home</button><div class="section">Il tuo profilo</div>
+<div class="panel"><div class="settingsrow"><span>Livello</span><b>Principiante (A1)</b></div><div class="settingsrow"><span>Lingua di spiegazione</span><b>Italiano</b></div><div class="settingsrow"><span>Pronuncia</span><b>Inglese neutro</b></div><div class="settingsrow"><span>Lezioni completate</span><b id="profileLessons">0</b></div></div>
+<p class="small">Questa prima versione salva i progressi su questo dispositivo. La conversazione usa risposte didattiche integrate: non è ancora collegata a un'intelligenza artificiale online.</p>
+</section>
+</div>
+<nav><button class="active" data-tab="home" onclick="show('home')"><strong>⌂</strong>Home</button><button data-tab="daily" onclick="show('daily')"><strong>▤</strong>Lezioni</button><button data-tab="vocabulary" onclick="show('vocabulary')"><strong>📖</strong>Parole</button><button data-tab="profile" onclick="show('profile')"><strong>♙</strong>Profilo</button></nav>
+<script>
+const $=id=>document.getElementById(id);
+let completed=Number(localStorage.getItem('met_completed')||0), wordIndex=0;
+const words=[['Work','Lavorare','I work tomorrow.','Domani lavoro.'],['Today','Oggi','Today I feel good.','Oggi mi sento bene.'],['Tomorrow','Domani','I work tomorrow.','Domani lavoro.'],['Would like','Vorrei','I would like a coffee.','Vorrei un caffè.'],['Usually','Di solito','I usually drink tea.','Di solito bevo tè.'],['Enjoy','Mi piace / apprezzare','I enjoy walking.','Mi piace camminare.']];
+function updateProgress(){ $('progressLabel').textContent=completed+' lezioni completate';$('profileLessons').textContent=completed;$('progressBar').style.width=Math.min(100,completed*10)+'%';localStorage.setItem('met_completed',completed)}
+function complete(){completed++;updateProgress()}
+function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));if(id==='vocabulary')renderWord();window.scrollTo(0,0)}
+function renderWord(){let w=words[wordIndex%words.length];$('wordCard').innerHTML=`<div class="word">${w[0]}</div><div class="meaning">${w[1]}</div><p><b>${w[2]}</b><br><span class="meaning">${w[3]}</span></p><button class="action secondary" onclick="speak('${w[2]}')">🔊 Ascolta</button>`}
+function nextWord(){wordIndex++;renderWord();if(wordIndex%words.length===0)complete()}
+function speak(t){if(!('speechSynthesis'in window)){alert('La sintesi vocale non è supportata da questo browser.');return}speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.88;speechSynthesis.speak(u)}
+function grammarAnswer(ok){$('grammarFeedback').textContent=ok?'Correct! “I” usa il verbo senza -s. Bravo!':'Quasi! Con “I” diciamo “I drink”, senza -s. Riprova.';if(ok)complete()}
+function addMsg(t,who,translation=''){let d=document.createElement('div');d.className='msg '+who;d.textContent=t;if(translation){let s=document.createElement('span');s.className='translation';s.textContent=translation;d.appendChild(s)}$('chat').appendChild(d);$('chat').scrollTop=$('chat').scrollHeight}
+function replyTo(text){let t=text.toLowerCase().trim(),reply='Good! Tell me more. What do you like doing in your free time?',tr='Bene! Raccontami di più. Cosa ti piace fare nel tempo libero?';
+if(/i work tomorrow|tomorrow i work/.test(t)){reply='Very good! A natural way to say it is: “I work tomorrow.” What time do you start?';tr='Molto bene! Una forma naturale è “I work tomorrow”. A che ora inizi?'}
+else if(/i drink tea|tea/.test(t)){reply='Excellent! You can also say: “I drink tea in the morning.” Do you drink coffee too?';tr='Ottimo! Puoi anche dire “Bevo tè la mattina”. Bevi anche caffè?'}
+else if(/i like|i love/.test(t)){reply='Nice sentence! Remember: “I like + verb-ing”. For example: “I like swimming.” What else do you like?';tr='Bella frase! Ricorda: “I like” + verbo in -ing. Cos’altro ti piace?'}
+else if(/hello|hi|hey/.test(t)){reply='Hello! It is nice to talk with you. How are you today?';tr='Ciao! È bello parlare con te. Come stai oggi?'}
+else if(/my name is/.test(t)){reply='Nice to meet you! Where are you from?';tr='Piacere di conoscerti! Di dove sei?'}
+else if(t.length<4){reply='Can you say a little more, please?';tr='Puoi dire qualcosa in più, per favore?'}
+return [reply,tr]}
+function sendMessage(){let input=$('chatInput'),t=input.value.trim();if(!t)return;addMsg(t,'user');input.value='';let [r,tr]=replyTo(t);setTimeout(()=>{addMsg(r,'bot',tr);speak(r)},350)}
+let recognition=null;
+function startListening(target){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){alert('Il riconoscimento vocale non è disponibile in questo browser. Apri l’app con Google Chrome e consenti l’accesso al microfono.');return}
+if(recognition){try{recognition.stop()}catch(e){}}
+recognition=new SR();recognition.lang='en-US';recognition.interimResults=false;recognition.maxAlternatives=1;
+let btn=target==='home'?$('homeMic'):null;if(btn){btn.classList.add('listening');btn.textContent='🔴 Ti ascolto…'}
+if(target==='chat')$('chatHint').textContent='Ti ascolto…';
+recognition.onresult=e=>{let transcript=e.results[0][0].transcript;if(target==='chat'){$('chatInput').value=transcript;sendMessage()}else if(target==='daily'){$('dailyFeedback').textContent='Hai detto: “'+transcript+'”. Confronta la tua frase con il modello e riprova!';complete()}else{$('micHint').textContent='Hai detto: “'+transcript+'”';show('conversation');$('chatInput').value=transcript;sendMessage()}};
+recognition.onerror=e=>{if(e.error!=='no-speech')alert('Microfono: '+e.error+'. Controlla i permessi del browser.')};
+recognition.onend=()=>{if(btn){btn.classList.remove('listening');btn.textContent='🎙 Tocca per parlare'}if(target==='chat')$('chatHint').textContent='Pronuncia: inglese internazionale neutro'};
+try{recognition.start()}catch(e){alert('Non riesco ad avviare il microfono. Riprova.')}
+}
+updateProgress();renderWord();
+if('serviceWorker'in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script>
+</body></html>

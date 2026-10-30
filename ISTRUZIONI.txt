@@ -1,0 +1,16 @@
+MY ENGLISH TUTOR - prima versione
+
+Contenuto:
+- index.html: app
+- tutor.jpg: immagine dell'insegnante
+- manifest.webmanifest e sw.js: supporto installazione PWA
+
+Per provarla:
+Apri index.html con Chrome. Le funzioni vocali dipendono dal supporto del browser e dai permessi microfono.
+Per installarla come app Android dalla schermata Home, i file devono essere pubblicati su un indirizzo HTTPS; poi apri il sito in Chrome > menu ⋮ > Aggiungi a schermata Home / Installa app.
+
+Limiti di questa prima versione:
+- Il riconoscimento vocale e la lettura ad alta voce usano le funzioni del browser.
+- La conversazione risponde con scenari didattici preimpostati: non è ancora un tutor AI libero come Praktika.
+- I progressi vengono salvati localmente sul dispositivo.
+- Non è un APK e non è ancora pubblicata su Play Store.
